@@ -62,15 +62,14 @@ def download_image(dest, link):
 if __name__ == "__main__":
     # parse command line options
     parser = argparse.ArgumentParser()
-    parser.add_argument("keyword", help="the keyword to search")
+    # parser.add_argument("keyword", help="the keyword to search")
     parser.add_argument("--worker", help="the number of workers used for downloading images",
-            type=int, default=1)
+            type=int, default=10)
     args = parser.parse_args()
 
     # get user input and search on google
-    query = args.keyword
-    url = "https://www.google.com/search?as_st=y&tbm=isch&as_q=" + query + \
-          "&as_epq=&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=isz:lt,islt:svga,itp:photo,ift:jpg"
+    # query = args.keyword
+    url = "https://www.google.com/search?as_st=y&biw=1344&bih=727&tbs=islt%3Asvga%2Citp%3Aphoto%2Cift%3Ajpg%2Cisz%3Am&tbm=isch&sa=1&q=cars+and+trucks&oq=cars+and&gs_l=psy-ab.3.1.0l4.74875.79696.0.80424.8.8.0.0.0.0.219.830.0j1j3.4.0....0...1.1.64.psy-ab..4.4.829...0i67k1.UHhXPZ5-peY"
     source = search(url)
 
     # Parse the page source and download pics
@@ -78,7 +77,7 @@ if __name__ == "__main__":
     ua = UserAgent()
 
     # check directory and create if necessary
-    dest = "images/" + args.keyword
+    dest = "images/" + "cars"
     if not os.path.isdir(dest):
         os.makedirs(dest)
 
